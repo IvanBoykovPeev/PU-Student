@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace VirtualColums
 {
@@ -6,6 +7,8 @@ namespace VirtualColums
     {
         static void Main(string[] args)
         {
+            Thread.CurrentThread.CurrentCulture = 
+                System.Globalization.CultureInfo.InvariantCulture;
             string input = Console.ReadLine();
             int firstNum = int.Parse(input);
             input = Console.ReadLine();
