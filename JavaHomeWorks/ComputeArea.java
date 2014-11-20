@@ -1,0 +1,23 @@
+package home.works;
+import java.util.Scanner;
+/**
+ *
+ * @author Ivan Boykov Peev
+ */
+public class ComputeArea {
+    public static void main(String[] args) {
+        //Create a Scanner object
+        Scanner input = new Scanner(System.in);
+        
+        //Prompt the user to enter a radius
+        System.out.println("Enter a number for radius: ");
+        double radius = input.nextDouble();
+        
+        //Compute area
+        double area = radius * radius * Math.PI;
+        
+        //Display results
+        System.out.println("The area for the circle of radius " + 
+                radius + " is " + area);
+    }
+}
