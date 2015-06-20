@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace FindCircleAreaAndPer
+namespace FindCircleAreaAndPerimeter
 {
-    class FindCircleAreaAndPer
+    class FindCircleAreaAndPerimeter
     {
         static void Main(string[] args)
         {
