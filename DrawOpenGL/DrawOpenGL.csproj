@@ -54,6 +54,9 @@
     <Compile Include="GUI\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Rectangle.cs" />
+    <Compile Include="Models\Shape.cs" />
+    <Compile Include="Models\Triangle.cs" />
     <Compile Include="Processors\DialogProcessor.cs" />
     <Compile Include="Processors\DislpayProcessor.cs" />
     <Compile Include="Program.cs" />
