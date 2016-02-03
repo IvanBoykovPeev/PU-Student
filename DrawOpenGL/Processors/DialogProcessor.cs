@@ -14,66 +14,29 @@ namespace DrawOpenGL
     {
         public DialogProcessor()
         {
-        }
 
-        Point tr1 = new Point();
-
-        Point tr2 = new Point();
-        Rectangle r1 = new Rectangle();
-        
-        
-        public void Draw(int x)
-        {
+            Shape p1 = new Point(100, 200, 55);
+            Shape p2 = new Point(300, 400, 99);
+            Shape r1 = new Triangle(77);
             ShapeList.Add(r1);
-            ShapeList.Add(tr1);
-            GL.InitNames();
-            GL.MatrixMode(MatrixMode.Modelview);
-            GL.LoadIdentity();
-            
-            
-            
-            foreach (var item in ShapeList)
-            {
-                item.DrawSelf(x);
-            }
+            ShapeList.Add(p1);
+            ShapeList.Add(p2);
 
-
-            
-            //GL.Color3(Color.Yellow);
-            //GL.InitNames();
-            //GL.PushName(1);
-            
-            
-            
-            //GL.LoadName(2);
-            //GL.Begin(BeginMode.Triangles);
-            //GL.Vertex2(50, 60);
-            //GL.Vertex2(100, 60);
-            //GL.Vertex2(100, 90);
-            //GL.End();
-            
-            //GL.LoadName(3);
-            //GL.Begin(BeginMode.Triangles);
-            //GL.Vertex2(400, 600);
-            //GL.Vertex2(200, 600);
-            //GL.Vertex2(200, 500);
-            //GL.End();
-
-            OpenTK.Graphics.GraphicsContext.CurrentContext.SwapBuffers();
+           
         }
-          
+
         
-        public void DrawTriangle()
-        {
-            
-            
-            // Triangle triangle = new Triangle();
-            // ShapeList.Add(triangle);
-        }
 
-        internal void addTriangle()
+        internal void addPoint()
         {
+            Random rnd = new Random();
+            int x = rnd.Next(100, 1000);
+            int y = rnd.Next(100, 600);
+            int name = rnd.Next(0, 50);
 
+            Shape s = new Point(x, y, name);
+            ShapeList.Add(s);
         }
+        
     }
 }

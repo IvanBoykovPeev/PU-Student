@@ -54,11 +54,12 @@
     <Compile Include="GUI\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Rectangle.cs" />
-    <Compile Include="Models\Shape.cs" />
     <Compile Include="Models\Triangle.cs" />
+    <Compile Include="Models\Shape.cs" />
+    <Compile Include="Models\Point.cs" />
     <Compile Include="Processors\DialogProcessor.cs" />
     <Compile Include="Processors\DislpayProcessor.cs" />
+    <Compile Include="Processors\GeometricProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GUI\MainForm.resx">
@@ -72,6 +73,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -86,6 +88,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\File.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ball Point Pen-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cursor-64.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

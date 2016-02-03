@@ -22,23 +22,27 @@ namespace DrawOpenGL
         }
         public DislpayProcessor()
         {
+            
+        }
+        
+        public void ReDraw()
+        {
+            Draw();
+            OpenTK.Graphics.GraphicsContext.CurrentContext.SwapBuffers();
         }
 
-        //public void ReDraw(object sender, PaintEventArgs e)
-        //{
-        //    foreach (var item in ShapeList)
-        //    {
-        //        item.DrawSelf(x);
-        //    }
-        //}
+        private void Draw()
+        {
+            foreach (var item in ShapeList)
+            {
+                DrawShape(item);
+            }
+        }
 
-        //private void Draw(Graphics graphics)
-        //{
-        //    foreach (Shape item in ShapeList)
-        //    {
-        //        item.DrawSelf(x);
-        //    }
-        //}
+        private static void DrawShape(Shape item)
+        {
+            item.DrawSelf();
+        }
 
         public System.Drawing.Graphics graphics { get; set; }
     }
