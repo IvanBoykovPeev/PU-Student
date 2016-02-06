@@ -42,10 +42,13 @@
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.glControl2 = new OpenTK.GLControl();
             this.debug = new System.Windows.Forms.RichTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -92,7 +95,9 @@
             this.toolStripButton2,
             this.toolStripButton4,
             this.toolStripButton3,
-            this.toolStripLabel2});
+            this.toolStripLabel2,
+            this.toolStripButton7,
+            this.toolStripButton8});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(886, 25);
@@ -175,6 +180,26 @@
             this.toolStripLabel2.Size = new System.Drawing.Size(42, 22);
             this.toolStripLabel2.Text = "Debug";
             // 
+            // toolStripButton7
+            // 
+            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton7.Image = global::DrawOpenGL.Properties.Resources.Expand_64;
+            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton7.Name = "toolStripButton7";
+            this.toolStripButton7.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton7.Text = "toolStripButton7";
+            this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
+            // 
+            // toolStripButton8
+            // 
+            this.toolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton8.Image = global::DrawOpenGL.Properties.Resources.Refresh_64;
+            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton8.Name = "toolStripButton8";
+            this.toolStripButton8.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton8.Text = "toolStripButton8";
+            this.toolStripButton8.Click += new System.EventHandler(this.toolStripButton8_Click);
+            // 
             // glControl2
             // 
             this.glControl2.BackColor = System.Drawing.Color.Black;
@@ -186,6 +211,7 @@
             this.glControl2.VSync = false;
             this.glControl2.Load += new System.EventHandler(this.glControl2_Load);
             this.glControl2.Paint += new System.Windows.Forms.PaintEventHandler(this.glControl2_Paint);
+            this.glControl2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.glControl2_KeyDown);
             this.glControl2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.glControl2_MouseDown);
             this.glControl2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.glControl2_MouseUp);
             this.glControl2.Resize += new System.EventHandler(this.glControl2_Resize);
@@ -203,6 +229,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel2,
+            this.toolStripProgressBar1,
             this.toolStripStatusLabel3});
             this.statusStrip1.Location = new System.Drawing.Point(0, 422);
             this.statusStrip1.Name = "statusStrip1";
@@ -212,15 +239,23 @@
             // 
             // toolStripStatusLabel2
             // 
+            this.toolStripStatusLabel2.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(118, 17);
-            this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(39, 17);
+            this.toolStripStatusLabel2.Text = "Ready";
+            this.toolStripStatusLabel2.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            // 
+            // toolStripProgressBar1
+            // 
+            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
             // 
             // toolStripStatusLabel3
             // 
+            this.toolStripStatusLabel3.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(118, 17);
-            this.toolStripStatusLabel3.Text = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(0, 17);
+            this.toolStripStatusLabel3.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // MainForm
             // 
@@ -269,6 +304,9 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.ToolStripButton toolStripButton7;
+        private System.Windows.Forms.ToolStripButton toolStripButton8;
+        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
     }
 }
 

@@ -6,12 +6,14 @@ using Tao.OpenGl;
 using Tao.Platform.Windows;
 using System.Drawing;
 using OpenTK.Graphics.OpenGL;
+using OpenTK;
 using System;
 
 namespace DrawOpenGL
 {
     class DislpayProcessor
     {
+        
 
         private List<Shape> shapeList = new List<Shape>();
 
@@ -21,29 +23,30 @@ namespace DrawOpenGL
             set { shapeList = value; }
         }
         public DislpayProcessor()
-        {
-            
+        {            
         }
         
-        public void ReDraw()
+        public virtual void ReDraw()
         {
-            Draw();
-            OpenTK.Graphics.GraphicsContext.CurrentContext.SwapBuffers();
+            GL.MatrixMode(MatrixMode.Modelview);
+            GL.Color3(Color.Black);
+            GL.PointSize(10.0f);
+            Draw();            
         }
 
-        private void Draw()
-        {
+        public virtual void Draw()
+        {            
             foreach (var item in ShapeList)
-            {
+            {                
                 DrawShape(item);
-            }
+            }            
         }
 
-        private static void DrawShape(Shape item)
+        public virtual void DrawShape(Shape item)
         {
+            GL.InitNames();
+            GL.LoadIdentity();
             item.DrawSelf();
         }
-
-        public System.Drawing.Graphics graphics { get; set; }
     }
 }
