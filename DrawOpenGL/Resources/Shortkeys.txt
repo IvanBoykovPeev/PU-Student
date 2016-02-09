@@ -1,0 +1,2 @@
+Alt+F4 - Close the program
+2
