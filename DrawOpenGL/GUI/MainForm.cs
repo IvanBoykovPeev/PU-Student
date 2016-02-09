@@ -8,6 +8,9 @@ using Tao.OpenGl;
 
 namespace DrawOpenGL
 {
+    /// <summary>
+    /// autor Ivan Boykov Peev
+    /// </summary>
     public partial class MainForm : Form
     {
         private DialogProcessor dialogProcessor = new DialogProcessor();
@@ -28,19 +31,22 @@ namespace DrawOpenGL
             int w = glControl2.Width;
             int h = glControl2.Height;
             GL.MatrixMode(MatrixMode.Projection);
+            GL.Enable(EnableCap.LineStipple);
+            
             GL.LoadIdentity();
             GL.Ortho(0, w, 0, h, -1, 1); // Bottom-left corner pixel has coordinate (0, 0)
             GL.Viewport(0, 0, w, h); // Use all of the glControl painting area
+            
         }
-
-
-        float[] translateMatrix2 = { 100.0f, 100.0f};
+        
         private void glControl2_Paint(object sender, PaintEventArgs e)
         {
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             
             dialogProcessor.ReDraw();
             glControl2.SwapBuffers();
+
+            toolStripStatusLabel3.Text = "Избран е примитив: " + selectedElement.ToString();
             //OpenTK.Graphics.GraphicsContext.CurrentContext.SwapBuffers(); // SwapBuffers enywhere in application
         }
         private void glControl2_Resize(object sender, EventArgs e)
@@ -48,8 +54,9 @@ namespace DrawOpenGL
             SetupViewport();
         }
 
-        int hits;
+        int hits; //hits for selected element
         const int BUFSIZE = 1000;
+        private string shortkeys = "Alt+F4 - Close the program";
         private void glControl2_MouseDown(object sender, MouseEventArgs e)
         {
             int[] selectBuffer = new int[BUFSIZE];
@@ -74,12 +81,17 @@ namespace DrawOpenGL
             GL.Flush();
             hits = GL.RenderMode(RenderingMode.Render);
             ProcessHits(hits, selectBuffer);
-        }
+            if (selectedElement == 0)
+            {
+                toolStripStatusLabel2.Text = "Не е избран елемент";
+            }
+            //toolStripStatusLabel1.Text = "Mause positin: x=" + e.X + " y=" + e.Y;
 
+        }
+            
         public void ProcessHits(int hits, int[] selectBuffer)
         {
             toolStripStatusLabel2.Text = "Избрани елементи: " + hits.ToString();
-            toolStripStatusLabel3.Text = "Избран е примитив: " + selectBuffer[3].ToString();
             selectedElement = selectBuffer[3];
         }       
 
@@ -91,20 +103,24 @@ namespace DrawOpenGL
                 if (item.Name == selectedElement)
                 {
                     item.IsSelected = true;
-                    
+
                 }
+               
                 else
                 {
                     item.IsSelected = false;
+                    
                 }
                 
+                
+                toolStripStatusLabel1.Text = "x=" + e.X + " y=" + e.Y;
+                glControl2.Invalidate();
             }
-            glControl2.Invalidate();
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            DebugInfo();
+            DebugInfo();            
         }
 
         private void DebugInfo()
@@ -116,6 +132,8 @@ namespace DrawOpenGL
                 debugInfoString.Append(item.IsSelected.ToString());
                 debugInfoString.Append("\n");
                 debugInfoString.Append(item.Translate.ToString());
+                debugInfoString.Append("\n");
+                debugInfoString.Append(item.Rotate.ToString());
                 debugInfoString.Append("\n");
             }
             debugInfoString.Append("\n");
@@ -129,7 +147,6 @@ namespace DrawOpenGL
             debug.Text = debugInfoString.ToString();
             glControl2.Invalidate();
         }
-
 
         private void toolStripButton6_Click(object sender, EventArgs e)
         {
@@ -148,7 +165,6 @@ namespace DrawOpenGL
             dialogProcessor.Translate(selectedElement);
             glControl2.Invalidate();
         }
-
         private void toolStripButton8_Click(object sender, EventArgs e)
         {
             toolStripStatusLabel2.Text = "Reload";
@@ -165,6 +181,43 @@ namespace DrawOpenGL
             {
                 DebugInfo();
             }
+            if (e.KeyCode == (Keys.Alt))
+            {
+                if (e.KeyCode == Keys.F4)
+                {
+                Close();                    
+                }
+            }
+        }
+        /// <summary>
+        /// Shortkeys description
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void shortkeysToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show(Resources.Resource1.Shortkeys);
+        }
+        /// <summary>
+        /// Rotate
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripButton9_Click(object sender, EventArgs e)
+        {
+            dialogProcessor.Rotate(selectedElement);
+            glControl2.Invalidate();
+        }
+
+        private void toolStripButton10_Click(object sender, EventArgs e)
+        {
+            dialogProcessor.Scale(selectedElement);
+            glControl2.Invalidate();
+        }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

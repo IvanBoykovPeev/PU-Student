@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DrawOpenGL.MainForm" Collapsed="true">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BQAAAgkAACBAAAUA4PyQgH/ioQQCAQyAEgAAAAAAAAE=</HashCode>
+      <FileName>GUI\MainForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DrawOpenGL.DrawVector" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DrawVector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DrawOpenGL.Point" Collapsed="true">
+    <Position X="9.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Point.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DrawOpenGL.Quads" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Quads.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DrawOpenGL.Shape" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAABCQAAAAkEAAAAJQAAQCEAAEAQAAAAAEAAAABAA=</HashCode>
+      <FileName>Models\Shape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DrawOpenGL.Triangle" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Triangle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DrawOpenGL.DialogProcessor" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Processors\DialogProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DrawOpenGL.DislpayProcessor" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAkAAAABAAAAAAAAAAAAAIABAAAAAAAA=</HashCode>
+      <FileName>Processors\DislpayProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DrawOpenGL.GeometricProcessor" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAEAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Processors\GeometricProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DrawOpenGL.StructuralProcessor" Collapsed="true">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Processors\StructuralProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DrawOpenGL.Program" Collapsed="true">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DrawOpenGL.Properties.Resources" Collapsed="true">
+    <Position X="12.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABACACAABECAAAQAEAAAAIAKAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DrawOpenGL.Properties.Settings" Collapsed="true">
+    <Position X="14" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DrawOpenGL.Resources.Resource1" Collapsed="true">
+    <Position X="15.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAYAAAIAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
