@@ -26,4 +26,4 @@ D:\Documents\DrawOpenGL\bin\Debug\OpenTK.GLControl.dll
 D:\Documents\DrawOpenGL\bin\Debug\OpenTK.pdb
 D:\Documents\DrawOpenGL\bin\Debug\OpenTK.xml
 D:\Documents\DrawOpenGL\bin\Debug\OpenTK.GLControl.xml
-D:\Documents\DrawOpenGL\obj\Debug\DrawOpenGL.csprojResolveAssemblyReference.cache
+D:\Documents\DrawOpenGL\obj\Debug\DrawOpenGL.Resources.Resource1.resources

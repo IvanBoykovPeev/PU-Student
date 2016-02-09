@@ -27,5 +27,29 @@ namespace DrawOpenGL
             }
             base.Draw();
         }
+
+        internal void Rotate(int selectedElement)
+        {
+            foreach (var item in ShapeList)
+            {
+                if (item.Name == selectedElement)
+                {
+                    item.Rotate += 5;
+                }
+            }
+            base.Draw();
+        }
+
+        internal void Scale(int selectedElement)
+        {
+            foreach (var item in ShapeList)
+            {
+                if (item.Name == selectedElement)
+                {
+                    item.Scale += new Vector3(0.1f,0.1f,0.1f);
+                }
+            }
+            base.Draw();
+        }
     }
 }

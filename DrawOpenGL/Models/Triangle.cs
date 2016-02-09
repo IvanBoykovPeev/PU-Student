@@ -5,14 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using OpenTK.Graphics.OpenGL;
+using OpenTK;
 
 namespace DrawOpenGL
 {
     class Triangle : Shape
     {
-        public Triangle(int name)
+
+        Vector3 point1;
+        Vector3 point2;
+        Vector3 point3;
+        public Triangle(Vector3 vertex1, Vector3 vertex2, Vector3 vertex3, int name)
         {
             this.Name = name;
+            this.point1 = vertex1;
+            this.point2 = vertex2;
+            this.point3 = vertex3;
         }
 
         internal override void DrawSelf()
@@ -21,14 +29,16 @@ namespace DrawOpenGL
 
             {
                 GL.LoadIdentity();
-                //GL.Color3(Color.Yellow);
+                GL.Color3(Color.Yellow);
                 GL.PushName(Name);
                 //GL.LoadName(Name);
                 GL.Translate(Translate);
+                GL.Rotate(Rotate, Vector3.UnitZ);
+                GL.Scale(Scale);
                 GL.Begin(BeginMode.Triangles);
-                GL.Vertex2(50, 60);
-                GL.Vertex2(100, 60);
-                GL.Vertex2(100, 90);
+                GL.Vertex3(point1);
+                GL.Vertex3(point2);
+                GL.Vertex3(point3);
                 GL.End();
             }
         }

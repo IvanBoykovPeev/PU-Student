@@ -10,28 +10,28 @@ using OpenTK;
 namespace DrawOpenGL
 {
     class Point : Shape
-    {       
-        
-        public Point(int x, int y, int name)
+    {
+
+        public Point(Vector3 point, int name)
         {
-            this.X = x;
-            this.Y = y;
+
             this.Name = name;
+            this.Point = point;
         }
-        
+
         internal override void DrawSelf()
         {
             base.DrawSelf();
-            
-            
+
+            GL.LoadIdentity();
             GL.PushName(Name);
             //GL.LoadName(Name);
             GL.Translate(Translate);
             GL.Begin(BeginMode.Points);
-            GL.Vertex2(X, Y);
+            GL.Vertex3(Point);
             GL.End();
         }
 
-        
+
     }
 }
