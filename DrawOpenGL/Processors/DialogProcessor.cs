@@ -11,14 +11,14 @@ using OpenTK;
 
 namespace DrawOpenGL
 {
-    class DialogProcessor : GeometricProcessor
+    class DialogProcessor : StructuralProcessor
     {
         
         public DialogProcessor()
         {
             
-            Shape p1 = new Point(new Vector3(100, 100, 0), 55);
-            Shape p2 = new Point(new Vector3(100, 200, 0), 99);
+            Shape p1 = new Point(new Vector3(50, 100, 0), 55);
+            Shape p2 = new Point(new Vector3(60, 200, 0), 99);
             Shape r1 = new Triangle(new Vector3(100, 100, 0),
                                     new Vector3(100, 200, 0),
                                     new Vector3(200, 200, 0), 77);
@@ -48,11 +48,5 @@ namespace DrawOpenGL
             Shape s = new Point(new Vector3(x, y, 0), name);
             ShapeList.Add(s);
         }
-
-
-
-
-
-        
     }
 }

@@ -86,6 +86,7 @@
     <Compile Include="Processors\DialogProcessor.cs" />
     <Compile Include="Processors\DislpayProcessor.cs" />
     <Compile Include="Processors\GeometricProcessor.cs" />
+    <Compile Include="Models\Marcer.cs" />
     <Compile Include="Processors\StructuralProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

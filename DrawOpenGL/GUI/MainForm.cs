@@ -32,17 +32,17 @@ namespace DrawOpenGL
             int h = glControl2.Height;
             GL.MatrixMode(MatrixMode.Projection);
             GL.Enable(EnableCap.LineStipple);
-            
+
             GL.LoadIdentity();
             GL.Ortho(0, w, 0, h, -1, 1); // Bottom-left corner pixel has coordinate (0, 0)
             GL.Viewport(0, 0, w, h); // Use all of the glControl painting area
-            
+
         }
-        
+
         private void glControl2_Paint(object sender, PaintEventArgs e)
         {
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-            
+
             dialogProcessor.ReDraw();
             glControl2.SwapBuffers();
 
@@ -64,7 +64,7 @@ namespace DrawOpenGL
             int w = glControl2.Width;
             int h = glControl2.Height;
             if (e.Button == MouseButtons.Left)
-            GL.GetInteger(GetPName.Viewport, viewport);
+                GL.GetInteger(GetPName.Viewport, viewport);
             GL.SelectBuffer(BUFSIZE, selectBuffer);
             GL.RenderMode(RenderingMode.Select);
             GL.MatrixMode(MatrixMode.Projection);
@@ -88,39 +88,28 @@ namespace DrawOpenGL
             //toolStripStatusLabel1.Text = "Mause positin: x=" + e.X + " y=" + e.Y;
 
         }
-            
+
         public void ProcessHits(int hits, int[] selectBuffer)
         {
             toolStripStatusLabel2.Text = "Избрани елементи: " + hits.ToString();
             selectedElement = selectBuffer[3];
-        }       
+        }
 
         private void glControl2_MouseUp(object sender, MouseEventArgs e)
         {
-            foreach (var item in dialogProcessor.ShapeList)
-            {
 
-                if (item.Name == selectedElement)
-                {
-                    item.IsSelected = true;
+            dialogProcessor.SelectedMark(selectedElement);
 
-                }
-               
-                else
-                {
-                    item.IsSelected = false;
-                    
-                }
-                
-                
-                toolStripStatusLabel1.Text = "x=" + e.X + " y=" + e.Y;
-                glControl2.Invalidate();
-            }
+
+
+            toolStripStatusLabel1.Text = "x=" + e.X + " y=" + e.Y;
+            glControl2.Invalidate();
+
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            DebugInfo();            
+            DebugInfo();
         }
 
         private void DebugInfo()
@@ -158,8 +147,8 @@ namespace DrawOpenGL
             dialogProcessor.addPoint();
             toolStripStatusLabel2.Text = "Добавена нова точка";
             glControl2.Invalidate();
-        }        
-        
+        }
+
         private void toolStripButton7_Click(object sender, EventArgs e)
         {
             dialogProcessor.Translate(selectedElement);
@@ -185,7 +174,7 @@ namespace DrawOpenGL
             {
                 if (e.KeyCode == Keys.F4)
                 {
-                Close();                    
+                    Close();
                 }
             }
         }
@@ -218,6 +207,11 @@ namespace DrawOpenGL
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void cutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dialogProcessor.SelectedCut(selectedElement);
         }
     }
 }

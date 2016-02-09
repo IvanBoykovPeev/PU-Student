@@ -55,6 +55,8 @@
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -65,6 +67,7 @@
             this.menuStrip1.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.editToolStripMenuItem,
             this.transformToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -319,6 +322,22 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(84, 17);
             this.toolStripStatusLabel1.Text = "Mause positin:";
             // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cutToolStripMenuItem});
+            this.editToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // cutToolStripMenuItem
+            // 
+            this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cutToolStripMenuItem.Text = "Cut";
+            this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -375,6 +394,8 @@
         private System.Windows.Forms.ToolStripButton toolStripButton9;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton toolStripButton10;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
     }
 }
 
