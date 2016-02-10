@@ -1,5 +1,7 @@
 ﻿using OpenTK.Graphics.OpenGL;
+//using 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -15,7 +17,8 @@ namespace DrawOpenGL
     {
         private DialogProcessor dialogProcessor = new DialogProcessor();
         private StringBuilder debugInfoString = new StringBuilder();
-        public int selectedElement;
+        public  List<int> selectedElement = new List<int>();
+        private int selectedPrimitiv;
         public MainForm()
         {
             InitializeComponent();
@@ -46,7 +49,7 @@ namespace DrawOpenGL
             dialogProcessor.ReDraw();
             glControl2.SwapBuffers();
 
-            toolStripStatusLabel3.Text = "Избран е примитив: " + selectedElement.ToString();
+            toolStripStatusLabel3.Text = "Избран е примитив: " + selectedPrimitiv.ToString();
             //OpenTK.Graphics.GraphicsContext.CurrentContext.SwapBuffers(); // SwapBuffers enywhere in application
         }
         private void glControl2_Resize(object sender, EventArgs e)
@@ -81,7 +84,7 @@ namespace DrawOpenGL
             GL.Flush();
             hits = GL.RenderMode(RenderingMode.Render);
             ProcessHits(hits, selectBuffer);
-            if (selectedElement == 0)
+            if (selectedElement.Count == 0)
             {
                 toolStripStatusLabel2.Text = "Не е избран елемент";
             }
@@ -91,23 +94,18 @@ namespace DrawOpenGL
 
         public void ProcessHits(int hits, int[] selectBuffer)
         {
-            toolStripStatusLabel2.Text = "Избрани елементи: " + hits.ToString();
-            selectedElement = selectBuffer[3];
-        }
+            toolStripStatusLabel2.Text = "Избран елемент: " + hits.ToString();
+            selectedPrimitiv = selectBuffer[3];
+        }           
 
         private void glControl2_MouseUp(object sender, MouseEventArgs e)
-        {
-
-            dialogProcessor.SelectedMark(selectedElement);
-
-
-
+        {              
+            dialogProcessor.SelectedMark(selectedPrimitiv);            
             toolStripStatusLabel1.Text = "x=" + e.X + " y=" + e.Y;
             glControl2.Invalidate();
-
         }
 
-        private void toolStripButton3_Click(object sender, EventArgs e)
+        private void DebugInfotoolStripButton3_Click(object sender, EventArgs e)
         {
             DebugInfo();
         }
@@ -116,13 +114,20 @@ namespace DrawOpenGL
         {
             foreach (var item in dialogProcessor.ShapeList)
             {
-                debugInfoString.Append(item.Name.ToString());
+                debugInfoString.Append("Name " + item.Name.ToString());
                 debugInfoString.Append("\n");
-                debugInfoString.Append(item.IsSelected.ToString());
+                debugInfoString.Append("Is selected " + item.IsSelected.ToString());
                 debugInfoString.Append("\n");
-                debugInfoString.Append(item.Translate.ToString());
+                debugInfoString.Append("Translate " + item.Translate.ToString());
                 debugInfoString.Append("\n");
-                debugInfoString.Append(item.Rotate.ToString());
+                debugInfoString.Append("Roteted " + item.Rotate.ToString());
+                debugInfoString.Append("\n");
+                
+            }
+                debugInfoString.Append("selectedShape:");
+            foreach (var item in dialogProcessor.SelectedShape)
+            {
+                debugInfoString.Append(item.ToString());
                 debugInfoString.Append("\n");
             }
             debugInfoString.Append("\n");
@@ -150,8 +155,8 @@ namespace DrawOpenGL
         }
 
         private void toolStripButton7_Click(object sender, EventArgs e)
-        {
-            dialogProcessor.Translate(selectedElement);
+        {            
+            dialogProcessor.Translate(selectedPrimitiv);
             glControl2.Invalidate();
         }
         private void toolStripButton8_Click(object sender, EventArgs e)
@@ -193,14 +198,14 @@ namespace DrawOpenGL
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void toolStripButton9_Click(object sender, EventArgs e)
-        {
-            dialogProcessor.Rotate(selectedElement);
+        {            
+                dialogProcessor.Rotate(selectedPrimitiv);
             glControl2.Invalidate();
         }
 
         private void toolStripButton10_Click(object sender, EventArgs e)
         {
-            dialogProcessor.Scale(selectedElement);
+                dialogProcessor.Scale(selectedPrimitiv);
             glControl2.Invalidate();
         }
 
@@ -211,7 +216,10 @@ namespace DrawOpenGL
 
         private void cutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dialogProcessor.SelectedCut(selectedElement);
+            foreach (var item in selectedElement)
+            {
+                dialogProcessor.SelectedCut(item);
+            }
         }
     }
 }

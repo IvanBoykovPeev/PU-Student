@@ -14,6 +14,7 @@ namespace DrawOpenGL
         Vector3 point2;
         Vector3 point3;
         Vector3 point4;
+        private int p;
 
         
         public Marcer(Vector3 vertex1, Vector3 vertex2, Vector3 vertex3, Vector3 vertex4, int name)
@@ -22,6 +23,15 @@ namespace DrawOpenGL
             this.point2 = vertex2;
             this.point3 = vertex3;
             this.point4 = vertex4;
+        }
+
+        public Marcer(Vector3 vector31, Vector3 vector32, Vector3 vector33, int p)
+        {
+            // TODO: Complete member initialization
+            this.point1 = vector31;
+            this.point2 = vector32;
+            this.point3 = vector33;
+            this.p = p;
         }
         
         internal override void DrawSelf()

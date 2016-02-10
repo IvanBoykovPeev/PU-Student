@@ -4,10 +4,9 @@ using System.Drawing;
 using System.Windows.Forms;
 using Tao.OpenGl;
 using Tao.Platform.Windows;
-using System.Drawing;
-using OpenTK.Graphics.OpenGL;
 using OpenTK;
 using System;
+using OpenTK.Graphics.OpenGL;
 
 namespace DrawOpenGL
 {
