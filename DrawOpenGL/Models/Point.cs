@@ -14,9 +14,8 @@ namespace DrawOpenGL
 
         public Point(Vector3 point, int name)
         {
-
             this.Name = name;
-            this.Point = point;
+            this.Point1 = point;
         }
 
         internal override void DrawSelf()
@@ -28,7 +27,7 @@ namespace DrawOpenGL
             //GL.LoadName(Name);
             GL.Translate(Translate);
             GL.Begin(BeginMode.Points);
-            GL.Vertex3(Point);
+            GL.Vertex3(Point1);
             GL.End();
         }
 

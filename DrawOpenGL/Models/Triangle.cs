@@ -11,16 +11,12 @@ namespace DrawOpenGL
 {
     class Triangle : Shape
     {
-
-        Vector3 point1;
-        Vector3 point2;
-        Vector3 point3;
         public Triangle(Vector3 vertex1, Vector3 vertex2, Vector3 vertex3, int name)
         {
             this.Name = name;
-            this.point1 = vertex1;
-            this.point2 = vertex2;
-            this.point3 = vertex3;
+            this.Point1 = vertex1;
+            this.Point2 = vertex2;
+            this.Point3 = vertex3;
         }
 
         internal override void DrawSelf()
@@ -36,9 +32,9 @@ namespace DrawOpenGL
                 GL.Rotate(Rotate, Vector3.UnitZ);
                 GL.Scale(Scale);
                 GL.Begin(BeginMode.Triangles);
-                GL.Vertex3(point1);
-                GL.Vertex3(point2);
-                GL.Vertex3(point3);
+                GL.Vertex3(Point1);
+                GL.Vertex3(Point2);
+                GL.Vertex3(Point3);
                 GL.End();
             }
         }

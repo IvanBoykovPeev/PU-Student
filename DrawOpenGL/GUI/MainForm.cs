@@ -50,6 +50,7 @@ namespace DrawOpenGL
             glControl2.SwapBuffers();
 
             toolStripStatusLabel3.Text = "Избран е примитив: " + selectedPrimitiv.ToString();
+            
             //OpenTK.Graphics.GraphicsContext.CurrentContext.SwapBuffers(); // SwapBuffers enywhere in application
         }
         private void glControl2_Resize(object sender, EventArgs e)
@@ -94,7 +95,8 @@ namespace DrawOpenGL
 
         public void ProcessHits(int hits, int[] selectBuffer)
         {
-            toolStripStatusLabel2.Text = "Избран елемент: " + hits.ToString();
+            //toolStripStatusLabel2.Text = "Избран елемент: " + hits.ToString();
+            this.hits = hits;
             selectedPrimitiv = selectBuffer[3];
         }           
 
@@ -102,6 +104,7 @@ namespace DrawOpenGL
         {              
             dialogProcessor.SelectedMark(selectedPrimitiv);            
             toolStripStatusLabel1.Text = "x=" + e.X + " y=" + e.Y;
+            toolStripStatusLabel2.Text = "Избрани елементи: " + dialogProcessor.SelectedShape.Count.ToString();
             glControl2.Invalidate();
         }
 
@@ -125,10 +128,11 @@ namespace DrawOpenGL
                 
             }
                 debugInfoString.Append("selectedShape:");
+                debugInfoString.Append("\n");
             foreach (var item in dialogProcessor.SelectedShape)
             {
                 debugInfoString.Append(item.ToString());
-                debugInfoString.Append("\n");
+                debugInfoString.Append(",");
             }
             debugInfoString.Append("\n");
             debug.Text = debugInfoString.ToString();

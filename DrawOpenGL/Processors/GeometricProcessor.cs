@@ -25,7 +25,7 @@ namespace DrawOpenGL
                     item.Translate += new Vector3d(10, 10, 0);
                 }
             }
-            base.Draw();
+            base.ReDraw();
         }
 
         internal void Rotate(int selectedElement)

@@ -20,33 +20,33 @@ namespace DrawOpenGL
         public StructuralProcessor()
         {
         }
-        Shape marcer;
+        Shape marker;
+        Shape marcedShape;
         internal void SelectedMark(int selectedElement)
         {
             if (selectedElement != 0)
-            {
-
-                marcer = new Marcer(new Vector3(100, 100, 0),
-                                    new Vector3(100, 200, 0),
-                                    new Vector3(200, 200, 0), 912);
-            ShapeList.Add(marcer);
-            SelectedShape.Add(selectedElement);
-            }
-            else
-            {
-                ShapeList.Remove(marcer);
-                selectedShape.Clear();
-            }
             {
                 foreach (var item in ShapeList)
                 {
                     if (item.Name == selectedElement)
                     {
                         item.IsSelected = true;
+                        marcedShape = item;
                         break;
                     }
                 }
-            }            
+                marker = new Marcer(marcedShape);
+                ShapeList.Add(marker);
+                if (!selectedShape.Contains(selectedElement))
+                {
+                SelectedShape.Add(selectedElement);                    
+                }
+            }
+            if(selectedElement == 0)
+            {
+                ShapeList.Remove(marker);
+                selectedShape.Clear();
+            }
         }
 
         internal void SelectedCut(int selectedElement)

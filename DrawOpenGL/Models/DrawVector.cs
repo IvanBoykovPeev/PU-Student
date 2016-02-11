@@ -10,13 +10,11 @@ namespace DrawOpenGL
 {
     class DrawVector : Shape
     {
-        Vector3 point1;
-        Vector3 point2;
         public DrawVector(Vector3 vertex1, Vector3 vertex2, int name)
         {
             this.Name = name;
-            this.point1 = vertex1;
-            this.point2 = vertex2;
+            this.Point1 = vertex1;
+            this.Point2 = vertex2;
         }
 
         internal override void DrawSelf()
@@ -33,8 +31,8 @@ namespace DrawOpenGL
                 GL.Scale(Scale);
                 //GL.LineStipple(1, 300);
                 GL.Begin(BeginMode.Lines);
-                GL.Vertex3(point1);
-                GL.Vertex3(point2);
+                GL.Vertex3(Point1);
+                GL.Vertex3(Point2);
                 GL.End();
             }
         }        

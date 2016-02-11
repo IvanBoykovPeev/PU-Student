@@ -52,6 +52,7 @@ namespace DrawOpenGL
         {
             GL.InitNames();
             item.DrawSelf();
+            
         }
     }
 }

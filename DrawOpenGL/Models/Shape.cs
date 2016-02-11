@@ -18,7 +18,42 @@ namespace DrawOpenGL
         private float rotate; //angle rotate need float value
         private Vector3 rotateVector = new Vector3(1f, 0f, 0f);
         private Vector3 scale = new Vector3(1, 1, 1);
+        private Vector3 point1;
+        private Vector3 point2;
 
+        public Vector3 Point2
+        {
+            get { return point2; }
+            set { point2 = value; }
+        }
+        private Vector3 point3;
+
+        public Vector3 Point3
+        {
+            get { return point3; }
+            set { point3 = value; }
+        }
+        private Vector3 point4;
+
+        public Vector3 Point4
+        {
+            get { return point4; }
+            set { point4 = value; }
+        }
+
+        public Vector3 Point1
+        {
+            get { return point1; }
+            set { point1 = value; }
+        }
+
+        private Vector3 point5;
+
+        public Vector3 Point5
+        {
+            get { return point5; }
+            set { point5 = value; }
+        }
         public Vector3 Scale
         {
             get { return scale; }
@@ -66,6 +101,8 @@ namespace DrawOpenGL
             get { return shapeList; }
             set { shapeList = value; }
         }
+
+        
         public Shape()
         {            
         }
