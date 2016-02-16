@@ -39,6 +39,14 @@ namespace DrawOpenGL
             set { heght = value; }
         }
 
+        private Vector3d widthHeightPoint = new Vector3d(1, 1, 1);
+
+        public Vector3d WidthHeightPoint
+        {
+            get { return widthHeightPoint; }
+            set { widthHeightPoint = value; }
+        }
+
         private Vector3 scale = new Vector3(1, 1, 1);
         public Vector3 Scale
         {
@@ -89,9 +97,9 @@ namespace DrawOpenGL
             set { shapeName = value; }
         }
 
-        private Vector3 shapeMatrix;
+        private Vector3d shapeMatrix;
 
-        public Vector3 ShapeMatrix
+        public Vector3d ShapeMatrix
         {
             get { return shapeMatrix; }
             set { shapeMatrix = value; }

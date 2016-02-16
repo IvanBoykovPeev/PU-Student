@@ -12,10 +12,9 @@ namespace DrawOpenGL
     class Point : Shape
     {
 
-        public Point(float x, float y)
+        public Point(double x, double y)
         {
-            ShapeMatrix = new Vector3(x, y, 0);
-            //this.IsSelected = false;
+            this.ShapeMatrix = new Vector3d(x, y, 0);
             this.ShapeName = "Точка";
             this.Name = 1;
         }
@@ -29,8 +28,8 @@ namespace DrawOpenGL
             GL.Translate(Translate);
             GL.Begin(BeginMode.Points);
             GL.Vertex3(ShapeMatrix);
-            GL.Vertex3(ShapeMatrix + new Vector3(0, 40, 0));
-            GL.Vertex3(ShapeMatrix + new Vector3(100, 110, 0));
+            GL.Vertex3(ShapeMatrix + new Vector3d(0, 40, 0));
+            GL.Vertex3(ShapeMatrix + new Vector3d(100, 110, 0));
             GL.End();
         }
 

@@ -144,18 +144,41 @@ namespace DrawOpenGL
         {
             if (!toolStripButton2.Checked)
             {
-            dialogProcessor.Translate(selectedShepe);
-            //dialogProcessor.RemoveMarcer();
-            toolStripStatusLabel2.Text = "Транслация";
-            glControl2.Invalidate();                
+                dialogProcessor.Translate(selectedShepe);
+                //dialogProcessor.RemoveMarcer();
+                toolStripStatusLabel2.Text = "Транслация";
+                glControl2.Invalidate();
             }
         }
-        private void toolStripButton8_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Rotate
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RotateButton_Click(object sender, EventArgs e)
+        {
+            if (!toolStripButton2.Checked)
+            {
+                dialogProcessor.Rotate(selectedShepe);
+                toolStripStatusLabel2.Text = "Ротация";
+                glControl2.Invalidate();
+            }
+        }
+        /// <summary>
+        /// Прерисуване
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ReloadButton8_Click(object sender, EventArgs e)
         {
             toolStripStatusLabel2.Text = "Reload";
             dialogProcessor.ReDraw();
         }
-
+        /// <summary>
+        /// Натиснат бутон на мишката
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void glControl2_KeyDown(object sender, KeyEventArgs e)
         {
             debugInfoString.Clear();
@@ -184,19 +207,18 @@ namespace DrawOpenGL
             MessageBox.Show(Resources.Resource1.Shortkeys);
         }
         /// <summary>
-        /// Rotate
+        /// Мащабиране
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void RotateButton_Click(object sender, EventArgs e)
-        {
-            dialogProcessor.Rotate(selectedShepe);
-            glControl2.Invalidate();
-        }
         private void ScaleButton_Click(object sender, EventArgs e)
         {
-            dialogProcessor.Scale(selectedShepe);
-            glControl2.Invalidate();
+            if (!toolStripButton2.Checked)
+            {
+                dialogProcessor.Scale(selectedShepe);
+                toolStripStatusLabel2.Text = "Мащабиране";
+                glControl2.Invalidate();
+            }
         }
         /// <summary>
         /// Изтрива елемент
@@ -205,8 +227,12 @@ namespace DrawOpenGL
         /// <param name="e"></param>
         private void cutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //dialogProcessor.SelectedCut(selectedPrimitiv);
-            glControl2.Invalidate();
+            if (!toolStripButton2.Checked)
+            {
+                dialogProcessor.SelectedCut(selectedShepe);
+                toolStripStatusLabel2.Text = "Мащабиране";
+                glControl2.Invalidate();
+            }
         }
         /// <summary>
         /// Добавя правоъгълник
@@ -230,16 +256,17 @@ namespace DrawOpenGL
         {
             if (!toolStripButton2.Checked)
             {
-                //selectedShepe = 0;
-                dialogProcessor.Select(selectedShepe);
+                dialogProcessor.RemoveMarcer();
                 toolStripStatusLabel2.Text = "Изкючена селекция";
                 toolStripStatusLabel3.Text = "Избран елемент: " + selectedShepe.ToString();
                 glControl2.Invalidate();
             }
             if (toolStripButton2.Checked)
             {
+                dialogProcessor.RemoveMarcer();
+                dialogProcessor.Select(selectedShepe);
                 toolStripStatusLabel2.Text = "Вкючена селекция";
-                //glControl2.Invalidate();
+                glControl2.Invalidate();
             }
         }
         /// <summary>
@@ -296,6 +323,19 @@ namespace DrawOpenGL
         {
             debugInfoString.Clear();
             debug.Text = debugInfoString.ToString();
+        }
+
+        
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!toolStripButton2.Checked)
+            {
+
+                dialogProcessor.CopyShape(selectedShepe);
+            toolStripStatusLabel2.Text = "Копиране";
+            glControl2.Invalidate();
+            }
         }
 
     }

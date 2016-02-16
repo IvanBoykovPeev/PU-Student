@@ -10,27 +10,13 @@ namespace DrawOpenGL
 {
     class Quads : Shape
     {
-        private double p1;
-        private double p2;
-        private double p3;
-        private double p4;
-
-        //private int p1;
-        //private int p2;
-        //private int p3;
-        //private int p4;
-
-        
-
         public Quads(int x, int y, int width, int height)
         {
             // TODO: Complete member initialization
-            this.X = x;
-            this.Y = y;
-            this.Width = width;
-            this.Height = height;
-            this.IsSelected = false;
+            this.ShapeMatrix = new Vector3d(x, y, 0);
+            this.WidthHeightPoint = new Vector3d(width, height, 0);
             this.ShapeName = "Правоъгълник";
+            this.Name = 4;
         }
         
         internal override void DrawSelf()
@@ -40,11 +26,11 @@ namespace DrawOpenGL
             {
                 GL.LoadIdentity();
                 GL.Color3(System.Drawing.Color.Wheat);
-                GL.PushName(4);
+                GL.PushName(Name);
                 GL.Translate(Translate);
-                GL.Rotate(RotateAngle, Vector3.UnitZ);
+                GL.Rotate(RotateAngle, Vector3d.UnitZ);
                 GL.Scale(Scale);
-                GL.Rect(X, Y ,Width, Height);
+                GL.Rect(ShapeMatrix.X, ShapeMatrix.Y, WidthHeightPoint.X, WidthHeightPoint.Y);
                 GL.Vertex3(X, Y, 0);
                 GL.End();
             }

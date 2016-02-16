@@ -59,8 +59,8 @@ namespace DrawOpenGL
 
         internal void AddRectangle()
         {
-            //Shape quad = new Quads(100, 100, 200, 200);
-            //ShapeList.Add(quad);
+            Shape quad = new Quads(100, 100, 200, 200);
+            ShapeList.Add(quad);
         }
         /// <summary>
         /// Ново изображение
@@ -70,6 +70,100 @@ namespace DrawOpenGL
             ShapeList.Clear();
         }
 
-        
+        internal void SelectedCut(int selectedElement)
+        {
+            if (selectedElement == 0)
+            {
+                return;
+            }
+            if (selectedElement != 0)
+            {
+                foreach (var item in ShapeList)
+                {
+                    if (item.Name == selectedElement)
+                    {
+                        ShapeList.Remove(item);
+                        //marker.Remove(item);
+                        item.IsSelected = false;
+                        break;
+                    }
+                }
+            }
+        }
+
+        internal void CopyShape(int selectedShepe)
+        {
+            if (selectedShepe == 0)
+            {
+                return;
+            }
+            if (selectedShepe != 0)
+            {
+                foreach (var item in ShapeList)
+                {
+                    if (item.Name == selectedShepe)
+                    {
+                        SelectedShape = item;
+                        //marker.Remove(item);
+                        item.IsSelected = false;
+                        break;
+                    }
+                }
+                SelectedShape.Name = 0;
+                SelectedShape.ShapeName = "Нова Фигура";
+                SelectedShape.ShapeMatrix += new Vector3d(100, 100, 0);
+                ShapeList.Add(SelectedShape);
+            }
+        }
+
+        internal void Select(int selectedPrimitiv)
+        {
+            ShapeList.Remove(marcer);
+            if (selectedPrimitiv != 0)
+            {
+                foreach (var item in ShapeList)
+                {
+                    if (item.Name == selectedPrimitiv && !item.IsSelected)
+                    {
+                        item.IsSelected = true;
+                        SelectedShape = item;
+
+                    }
+                }
+                if (selectedShape.Name == 1)
+                {
+                    marcer = new Marcer(SelectedShape.ShapeMatrix - new Vector3d(10, 10, 0), SelectedShape.ShapeMatrix + new Vector3d(10, 10, 0));
+                }
+                else
+                {
+
+                    marcer = new Marcer(SelectedShape.ShapeMatrix, SelectedShape.WidthHeightPoint);
+                }
+
+                ShapeList.Add(marcer);
+            }
+            if (selectedPrimitiv == 0)
+            {
+                foreach (var item in ShapeList)
+                {
+                    item.IsSelected = false;
+                }
+                ShapeList.Remove(marcer);
+            }
+
+        }
+
+        internal void RemoveMarcer()
+        {
+            ShapeList.Remove(marcer);
+        }
+
+        Shape selectedShape;
+        Shape marcer;
+        public Shape SelectedShape
+        {
+            get { return selectedShape; }
+            set { selectedShape = value; }
+        }
     }
 }

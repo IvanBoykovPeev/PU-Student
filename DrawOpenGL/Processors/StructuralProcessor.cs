@@ -50,29 +50,7 @@ namespace DrawOpenGL
 
         
 
-        internal void SelectedCut(int selectedElement)
-        {
-            if (selectedElement == 0)
-            {
-                return;
-            }
-            if (selectedElement != 0)
-            {
-
-                foreach (var item in shapeLinearization)
-                {
-                    if (item.IsSelected)
-                    {
-                        ShapeList.Remove(item);
-                        //marker.Remove(item);
-                        item.IsSelected = false;
-                        break;
-                    }
-                }
-            }
-
-            //selectedShape.Clear();
-        }
+        
 
         private List<ShapeGroup> shapeListGroupe = new List<ShapeGroup>();
 
