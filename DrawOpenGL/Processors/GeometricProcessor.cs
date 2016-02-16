@@ -10,22 +10,24 @@ namespace DrawOpenGL
 {
     class GeometricProcessor : DislpayProcessor
     {
-        
+
         public GeometricProcessor()
         {
         }
 
-        internal void Translate(int selectedElement)
+        internal void Translate(int selectedPrimitiv)
         {
-
+            
             foreach (var item in ShapeList)
             {
-                if (item.Name == selectedElement)
+                if (item.Name == selectedPrimitiv)
                 {
-                    item.Translate += new Vector3d(10, 10, 0);
+                    //item.Translate += new Vector3d(10, 10, 0);
+                    //marcer.Translate += new Vector3d(10, 10, 0);
+                    item.X += 10;
+                    item.Y += 10;
                 }
             }
-            base.ReDraw();
         }
 
         internal void Rotate(int selectedElement)
@@ -34,10 +36,9 @@ namespace DrawOpenGL
             {
                 if (item.Name == selectedElement)
                 {
-                    item.Rotate += 5;
+                    item.RotateAngle += 5;
                 }
             }
-            base.Draw();
         }
 
         internal void Scale(int selectedElement)
@@ -46,10 +47,65 @@ namespace DrawOpenGL
             {
                 if (item.Name == selectedElement)
                 {
-                    item.Scale += new Vector3(0.1f,0.1f,0.1f);
+                    item.Scale += new Vector3(0.1f, 0.1f, 0.1f);
                 }
             }
-            base.Draw();
+        }
+
+
+
+
+        internal void Select(int selectedPrimitiv)
+        {
+            if (selectedPrimitiv != 0)
+            {
+                foreach (var item in ShapeList)
+                {
+                    if (item.Name == selectedPrimitiv)
+                    {
+                        item.IsSelected = true;
+                        SelectedShape = item;
+
+                    }
+                }
+                        //marcer = new Marcer(SelectedShape);
+
+                //ShapeList.Add(marcer);
+            }
+            if (selectedPrimitiv == 0)
+            {
+                foreach (var item in ShapeList)
+                {
+                    item.IsSelected = false;
+                }
+                //ShapeList.Remove(marcer);
+            }
+
+        }
+
+
+        //public override void Draw()
+        //{
+        //    base.Draw();
+        //    //foreach (var item in Marcers)
+        //    //{                
+        //    //    DrawShape(item);
+        //    //}
+        //}
+
+        Shape selectedShape;
+        Shape marcer;
+        public Shape SelectedShape
+        {
+            get { return selectedShape; }
+            set { selectedShape = value; }
+        }
+
+        internal void RemoveMarcer()
+        {
+
+                //ShapeList.Remove(marcer);
+            
         }
     }
 }

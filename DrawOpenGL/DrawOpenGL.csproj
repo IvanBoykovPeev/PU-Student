@@ -80,6 +80,7 @@
     </Compile>
     <Compile Include="Models\DrawVector.cs" />
     <Compile Include="Models\Quads.cs" />
+    <Compile Include="Models\ShapeGroup.cs" />
     <Compile Include="Models\Triangle.cs" />
     <Compile Include="Models\Shape.cs" />
     <Compile Include="Models\Point.cs" />
@@ -113,7 +114,6 @@
       <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -171,6 +171,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Resize-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rectangle.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

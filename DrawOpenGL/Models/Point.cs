@@ -12,12 +12,13 @@ namespace DrawOpenGL
     class Point : Shape
     {
 
-        public Point(Vector3 point, int name)
+        public Point(float x, float y)
         {
-            this.Name = name;
-            this.Point1 = point;
+            ShapeMatrix = new Vector3(x, y, 0);
+            //this.IsSelected = false;
+            this.ShapeName = "Точка";
+            this.Name = 1;
         }
-
         internal override void DrawSelf()
         {
             base.DrawSelf();
@@ -27,7 +28,9 @@ namespace DrawOpenGL
             //GL.LoadName(Name);
             GL.Translate(Translate);
             GL.Begin(BeginMode.Points);
-            GL.Vertex3(Point1);
+            GL.Vertex3(ShapeMatrix);
+            GL.Vertex3(ShapeMatrix + new Vector3(0, 40, 0));
+            GL.Vertex3(ShapeMatrix + new Vector3(100, 110, 0));
             GL.End();
         }
 

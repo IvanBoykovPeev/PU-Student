@@ -5,59 +5,117 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DrawOpenGL;
+using OpenTK.Graphics.OpenGL;
+using System.Drawing;
 
 namespace DrawOpenGL
 {
     class StructuralProcessor : GeometricProcessor
     {
-        List<int> selectedShape = new List<int>();
-
-        public List<int> SelectedShape
-        {
-            get { return selectedShape; }
-            set { selectedShape = value; }
-        }
-        public StructuralProcessor()
-        {
-        }
+        Dictionary<int, int> Groups = new Dictionary<int, int>();
         Shape marker;
         Shape marcedShape;
-        internal void SelectedMark(int selectedElement)
-        {
-            if (selectedElement != 0)
-            {
-                foreach (var item in ShapeList)
-                {
-                    if (item.Name == selectedElement)
-                    {
-                        item.IsSelected = true;
-                        marcedShape = item;
-                        break;
-                    }
-                }
-                marker = new Marcer(marcedShape);
-                ShapeList.Add(marker);
-                if (!selectedShape.Contains(selectedElement))
-                {
-                SelectedShape.Add(selectedElement);                    
-                }
-            }
-            if(selectedElement == 0)
-            {
-                ShapeList.Remove(marker);
-                selectedShape.Clear();
-            }
-        }
+
+        private Shape selectedShape;
+
+        //public Shape SelectedShape
+        //{
+        //    get { return selectedShape; }
+        //    set { selectedShape = value; }
+        //}
+        //public StructuralProcessor()
+        //{
+        //}
+
+
+        //internal void SelectedPrimitiv(int selectedPrimitiv)
+        //{
+        //    if (selectedPrimitiv != 0)
+        //    {
+        //        foreach (var item in ShapeList)
+        //        {
+        //            if (item.Name == selectedPrimitiv)
+        //            {
+        //                item.IsSelected = true;
+        //                SelectedShape = item;
+        //                break;
+        //            }
+                    
+        //        }
+        //                marker = SelectedShape;
+        //                ShapeList.Add(marker);
+
+        //    }
+        //}
+
+        
 
         internal void SelectedCut(int selectedElement)
         {
-            foreach (var item in ShapeList)
+            if (selectedElement == 0)
             {
-                if (item.Name == selectedElement)
+                return;
+            }
+            if (selectedElement != 0)
+            {
+
+                foreach (var item in shapeLinearization)
                 {
-                    ShapeList.Remove(item);
+                    if (item.IsSelected)
+                    {
+                        ShapeList.Remove(item);
+                        //marker.Remove(item);
+                        item.IsSelected = false;
+                        break;
+                    }
                 }
             }
+
+            //selectedShape.Clear();
         }
+
+        private List<ShapeGroup> shapeListGroupe = new List<ShapeGroup>();
+
+        internal List<ShapeGroup> ShapeListGroupe
+        {
+            get { return shapeListGroupe; }
+            set { shapeListGroupe = value; }
+        }
+
+        private List<Shape> shapeLinearization = new List<Shape>();
+
+        public List<Shape> ShapeLinearization
+        {
+            get { return shapeLinearization; }
+            set { shapeLinearization = value; }
+        }
+        public void linearization(List<ShapeGroup> shapeGroupe)
+        {
+            foreach (var item in ShapeListGroupe)
+            {
+
+                ShapeList.Add(item);
+            }
+            //    //nameOfGroupe = ShapeGroupeName;
+            //return ShapeLinearization;
+        }
+
+
+        public override void ReDraw()
+        {
+            base.ReDraw();
+
+            linearization(ShapeListGroupe);
+            foreach (var item in ShapeLinearization)
+            {
+                DrawShape(item);
+            }
+        }
+
     }
 }
+
+
+
+
+

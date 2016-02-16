@@ -9,113 +9,108 @@ using OpenTK;
 namespace DrawOpenGL
 {
     public abstract class Shape
-    {
+    {        
+        private float x;
+        public float X
+        {
+            get { return x; }
+            set { x = value; }
+        }
+        private float y;
 
-        private List<Shape> shapeList = new List<Shape>();
-        private bool isSelected = false;
-        private int name;
-        private Vector3d translate = new Vector3d();
-        private float rotate; //angle rotate need float value
-        private Vector3 rotateVector = new Vector3(1f, 0f, 0f);
+        public float Y
+        {
+            get { return y; }
+            set { y = value; }
+        }
+        private float width;
+
+        public float Width
+        {
+            get { return width; }
+            set { width = value; }
+        }
+
+        private float heght;
+
+        public float Height
+        {
+            get { return heght; }
+            set { heght = value; }
+        }
+
         private Vector3 scale = new Vector3(1, 1, 1);
-        private Vector3 point1;
-        private Vector3 point2;
-
-        public Vector3 Point2
-        {
-            get { return point2; }
-            set { point2 = value; }
-        }
-        private Vector3 point3;
-
-        public Vector3 Point3
-        {
-            get { return point3; }
-            set { point3 = value; }
-        }
-        private Vector3 point4;
-
-        public Vector3 Point4
-        {
-            get { return point4; }
-            set { point4 = value; }
-        }
-
-        public Vector3 Point1
-        {
-            get { return point1; }
-            set { point1 = value; }
-        }
-
-        private Vector3 point5;
-
-        public Vector3 Point5
-        {
-            get { return point5; }
-            set { point5 = value; }
-        }
         public Vector3 Scale
         {
             get { return scale; }
             set { scale = value; }
         }
 
+        private Vector3 rotateVector = new Vector3(1f, 0f, 0f);
         public Vector3 RotateVector
         {
             get { return RotateVector; }
             set { RotateVector = value; }
         }
 
-        public float Rotate
+        private float rotateAngle; //angle rotate need float value
+        public float RotateAngle
         {
-            get { return rotate; }
-            set { rotate = value; }
-        }
-        private Vector3 point = new Vector3(0, 0, 0);
-
-        public Vector3 Point
-        {
-            get { return point; }
-            set { point = value; }
+            get { return rotateAngle; }
+            set { rotateAngle = value; }
         }
 
+        private Vector3d translate = new Vector3d();
         public Vector3d Translate
         {
             get { return translate; }
             set { translate = value; }
         }       
 
+        private int name;
         public int Name
         {
             get { return name; }
             set { name = value; }
         }
 
+        private bool isSelected = false;
         public bool IsSelected
         {
             get { return isSelected; }
             set { isSelected = value; }
         }
-        public List<Shape> ShapeList
+
+        string shapeName;
+
+        public string ShapeName
         {
-            get { return shapeList; }
-            set { shapeList = value; }
+            get { return shapeName; }
+            set { shapeName = value; }
         }
 
-        
+        private Vector3 shapeMatrix;
+
+        public Vector3 ShapeMatrix
+        {
+            get { return shapeMatrix; }
+            set { shapeMatrix = value; }
+        }
         public Shape()
         {            
         }
 
         public Shape(Shape shape)
         {
+            this.X = shape.x;
+            this.Y = shape.y;
+            this.Width = shape.width;
+            this.Height = shape.heght;
             this.IsSelected = shape.isSelected;
             this.Name = shape.Name;
         }
-
         internal virtual void DrawSelf()
         {            
         }
-
     }
 }

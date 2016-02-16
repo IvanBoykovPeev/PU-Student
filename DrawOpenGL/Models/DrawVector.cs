@@ -10,11 +10,10 @@ namespace DrawOpenGL
 {
     class DrawVector : Shape
     {
-        public DrawVector(Vector3 vertex1, Vector3 vertex2, int name)
+        public DrawVector(float vertex1, float vertex2)
         {
-            this.Name = name;
-            this.Point1 = vertex1;
-            this.Point2 = vertex2;
+            this.X = vertex1;
+            this.Y = vertex2;
         }
 
         internal override void DrawSelf()
@@ -27,12 +26,12 @@ namespace DrawOpenGL
                 GL.LoadIdentity();
                 GL.PushName(Name);
                 GL.Translate(Translate);
-                GL.Rotate(Rotate, Vector3.UnitZ);
+                GL.Rotate(RotateAngle, Vector3.UnitZ);
                 GL.Scale(Scale);
                 //GL.LineStipple(1, 300);
                 GL.Begin(BeginMode.Lines);
-                GL.Vertex3(Point1);
-                GL.Vertex3(Point2);
+                GL.Vertex3(X, Y, 0);
+                GL.Vertex3(X, Y, 0);
                 GL.End();
             }
         }        
