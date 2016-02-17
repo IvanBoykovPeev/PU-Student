@@ -11,11 +11,10 @@ namespace DrawOpenGL
 {
     class Point : Shape
     {
-
-        public Point(double x, double y)
+        public Point(Vector3d v, int name)
         {
-            this.ShapeMatrix = new Vector3d(x, y, 0);
-            this.ShapeName = "Точка";
+            this.ShapeMatrix = v;
+            this.ShapeName = "Точка" + name;
             this.Name = 1;
         }
         internal override void DrawSelf()

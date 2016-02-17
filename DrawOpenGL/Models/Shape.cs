@@ -98,7 +98,6 @@ namespace DrawOpenGL
         }
 
         private Vector3d shapeMatrix;
-
         public Vector3d ShapeMatrix
         {
             get { return shapeMatrix; }
@@ -110,15 +109,11 @@ namespace DrawOpenGL
 
         public Shape(Shape shape)
         {
-            this.X = shape.x;
-            this.Y = shape.y;
-            this.Width = shape.width;
-            this.Height = shape.heght;
-            this.IsSelected = shape.isSelected;
-            this.Name = shape.Name;
         }
         internal virtual void DrawSelf()
         {            
         }
+
+        
     }
 }

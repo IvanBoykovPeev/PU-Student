@@ -78,6 +78,7 @@ namespace DrawOpenGL
             //return ShapeLinearization;
         }
 
+        
 
         public override void ReDraw()
         {

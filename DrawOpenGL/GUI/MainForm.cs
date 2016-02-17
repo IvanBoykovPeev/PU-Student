@@ -88,8 +88,14 @@ namespace DrawOpenGL
                 {
                     toolStripStatusLabel2.Text = "Не е избран елемент";
                 }
-                dialogProcessor.Select(selectedShepe);
+                foreach (var item in dialogProcessor.ShapeList)
+                {
+                    secectName = item.ShapeName;
+                }
+
+                
             }
+                dialogProcessor.Select(selectedShepe);
             glControl2.Invalidate();
         }
 
@@ -97,14 +103,14 @@ namespace DrawOpenGL
         {
             toolStripStatusLabel2.Text = "Избрани елементи: " + hits.ToString();
             toolStripStatusLabel3.Text = "Избран елемент: " + selectBuffer[3].ToString();
-
             selectedShepe = selectBuffer[3];
-
         }
 
+            string secectName;
         private void glControl2_MouseUp(object sender, MouseEventArgs e)
         {
-
+            
+            toolStripStatusLabel5.Text = "" + secectName.ToString();
             toolStripStatusLabel1.Text = "Позиция на мишката x= " + e.X + " y= " + e.Y;
             glControl2.Invalidate();
 
@@ -133,7 +139,6 @@ namespace DrawOpenGL
         {
             if (!toolStripButton2.Checked)
             {
-
                 dialogProcessor.addPoint();
                 toolStripStatusLabel2.Text = "Добавена нова точка";
                 glControl2.Invalidate();
@@ -230,7 +235,7 @@ namespace DrawOpenGL
             if (!toolStripButton2.Checked)
             {
                 dialogProcessor.SelectedCut(selectedShepe);
-                toolStripStatusLabel2.Text = "Мащабиране";
+                toolStripStatusLabel2.Text = "Изрязване";
                 glControl2.Invalidate();
             }
         }
@@ -276,8 +281,11 @@ namespace DrawOpenGL
         /// <param name="e"></param>
         private void NewImageButton5_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Внимание, ще изтриете предишното изображение!\nЩе продължите ли?", "Ново изображение", MessageBoxButtons.YesNo) != DialogResult.No)
+            {
             dialogProcessor.NewImage();
-            glControl2.Invalidate();
+            glControl2.Invalidate();               
+            } 
         }
         /// <summary>
         /// Дебъг информация
@@ -308,8 +316,6 @@ namespace DrawOpenGL
             }
             debugInfoString.Append("ShapeList.Count " + dialogProcessor.ShapeList.Count.ToString());
             debugInfoString.Append("\n");
-            debugInfoString.Append("selectedShape:");
-            debugInfoString.Append("\n");
             debugInfoString.Append("----------------------------------------------");
             debug.Text = debugInfoString.ToString();
             glControl2.Invalidate();
@@ -336,6 +342,11 @@ namespace DrawOpenGL
             toolStripStatusLabel2.Text = "Копиране";
             glControl2.Invalidate();
             }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
     }

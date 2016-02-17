@@ -13,7 +13,13 @@ namespace DrawOpenGL
 {
     class DialogProcessor : StructuralProcessor
     {
+        int pointIncrementName = 1;
 
+        public int PointIncrementName
+        {
+            get { return pointIncrementName; }
+            set { pointIncrementName = value; }
+        }
         public DialogProcessor()
         {
             //Shape p1 = new Point(new Vector3(50, 100, 0), 55);
@@ -51,9 +57,9 @@ namespace DrawOpenGL
             Random rnd = new Random();
             int x = rnd.Next(100, 1000);
             int y = rnd.Next(100, 600);
-            //int name = rnd.Next(1, 5000); //Random name
 
-            Shape s = new Point(300, 300);
+            Shape s = new Point(new Vector3d(x, y , 0), PointIncrementName);
+            PointIncrementName++;
             ShapeList.Add(s);
         }
 
@@ -109,9 +115,12 @@ namespace DrawOpenGL
                         break;
                     }
                 }
-                SelectedShape.Name = 0;
-                SelectedShape.ShapeName = "Нова Фигура";
-                SelectedShape.ShapeMatrix += new Vector3d(100, 100, 0);
+                if (SelectedShape.Name == 1)
+                {
+                    int name = 1;
+                Shape newShape = new Point(new Vector3d(100, 100, 0), name);
+                name++;
+                }
                 ShapeList.Add(SelectedShape);
             }
         }
@@ -163,7 +172,7 @@ namespace DrawOpenGL
         public Shape SelectedShape
         {
             get { return selectedShape; }
-            set { selectedShape = value; }
+            set {  selectedShape = value; }
         }
     }
 }
