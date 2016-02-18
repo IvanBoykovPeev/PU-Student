@@ -93,9 +93,9 @@ namespace DrawOpenGL
                     secectName = item.ShapeName;
                 }
 
-                
+
             }
-                dialogProcessor.Select(selectedShepe);
+            dialogProcessor.Select(selectedShepe);
             glControl2.Invalidate();
         }
 
@@ -106,11 +106,11 @@ namespace DrawOpenGL
             selectedShepe = selectBuffer[3];
         }
 
-            string secectName;
+        string secectName;
         private void glControl2_MouseUp(object sender, MouseEventArgs e)
         {
-            
-            toolStripStatusLabel5.Text = "" + secectName.ToString();
+
+            toolStripStatusLabel5.Text = " " + secectName.ToString();
             toolStripStatusLabel1.Text = "Позиция на мишката x= " + e.X + " y= " + e.Y;
             glControl2.Invalidate();
 
@@ -234,7 +234,7 @@ namespace DrawOpenGL
         {
             if (!toolStripButton2.Checked)
             {
-                dialogProcessor.SelectedCut(selectedShepe);
+                dialogProcessor.CutShape(selectedShepe);
                 toolStripStatusLabel2.Text = "Изрязване";
                 glControl2.Invalidate();
             }
@@ -283,9 +283,9 @@ namespace DrawOpenGL
         {
             if (MessageBox.Show("Внимание, ще изтриете предишното изображение!\nЩе продължите ли?", "Ново изображение", MessageBoxButtons.YesNo) != DialogResult.No)
             {
-            dialogProcessor.NewImage();
-            glControl2.Invalidate();               
-            } 
+                dialogProcessor.NewImage();
+                glControl2.Invalidate();
+            }
         }
         /// <summary>
         /// Дебъг информация
@@ -311,7 +311,8 @@ namespace DrawOpenGL
                 debugInfoString.Append("\n");
                 debugInfoString.Append("ShapeMatrix " + item.ShapeMatrix.ToString());
                 debugInfoString.Append("\n");
-
+                debugInfoString.Append("ShapeListClipboard " + dialogProcessor.ShapeListClipboard.Count.ToString());
+                debugInfoString.Append("\n");
 
             }
             debugInfoString.Append("ShapeList.Count " + dialogProcessor.ShapeList.Count.ToString());
@@ -330,23 +331,80 @@ namespace DrawOpenGL
             debugInfoString.Clear();
             debug.Text = debugInfoString.ToString();
         }
-
-        
-
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!toolStripButton2.Checked)
             {
-
                 dialogProcessor.CopyShape(selectedShepe);
-            toolStripStatusLabel2.Text = "Копиране";
-            glControl2.Invalidate();
+                toolStripStatusLabel2.Text = "Копиране";
             }
+                glControl2.Invalidate();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void translateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!toolStripButton2.Checked)
+            {
+                dialogProcessor.Translate(selectedShepe);
+                //dialogProcessor.RemoveMarcer();
+                toolStripStatusLabel2.Text = "Транслация";
+                glControl2.Invalidate();
+            }
+        }
+
+        private void rotateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!toolStripButton2.Checked)
+            {
+                dialogProcessor.Rotate(selectedShepe);
+                toolStripStatusLabel2.Text = "Ротация";
+                glControl2.Invalidate();
+            }
+        }
+
+        private void scaledToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!toolStripButton2.Checked)
+            {
+                dialogProcessor.Scale(selectedShepe);
+                toolStripStatusLabel2.Text = "Мащабиране";
+                glControl2.Invalidate();
+            }
+        }
+
+        private void pointToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!toolStripButton2.Checked)
+            {
+                dialogProcessor.addPoint();
+                toolStripStatusLabel2.Text = "Добавена нова точка";
+                glControl2.Invalidate();
+            }
+        }
+
+        private void rectangleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!toolStripButton2.Checked)
+            {
+                dialogProcessor.AddRectangle();
+                toolStripStatusLabel2.Text = "Добавен нов правоъгълник";
+                glControl2.Invalidate();
+            }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!toolStripButton2.Checked)
+            {
+                dialogProcessor.DeleteShape(selectedShepe);
+                toolStripStatusLabel2.Text = "Изтриване на фигура";
+                glControl2.Invalidate();
+            }
         }
 
     }

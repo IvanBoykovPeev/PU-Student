@@ -13,8 +13,26 @@ namespace DrawOpenGL
 {
     class DialogProcessor : StructuralProcessor
     {
-        int pointIncrementName = 1;
-
+        public List<Shape> ShapeListClipboard
+        {
+            get { return shapeListClipboard; }
+            set { shapeListClipboard = value; }
+        }
+        public Shape SelectedShape
+        {
+            get { return selectedShape; }
+            set { selectedShape = value; }
+        }
+        public int RectangleIncrementName
+        {
+            get { return rectangleIncrementName; }
+            set { rectangleIncrementName = value; }
+        }       
+        public int TriangleIncrementName
+        {
+            get { return triangleIncrementName; }
+            set { triangleIncrementName = value; }
+        }      
         public int PointIncrementName
         {
             get { return pointIncrementName; }
@@ -54,18 +72,18 @@ namespace DrawOpenGL
         }
         internal void addPoint()
         {
-            Random rnd = new Random();
             int x = rnd.Next(100, 1000);
             int y = rnd.Next(100, 600);
-
             Shape s = new Point(new Vector3d(x, y , 0), PointIncrementName);
             PointIncrementName++;
             ShapeList.Add(s);
         }
-
         internal void AddRectangle()
         {
-            Shape quad = new Quads(100, 100, 200, 200);
+            int x = rnd.Next(100, 1000);
+            int y = rnd.Next(100, 600);
+            Shape quad = new RectangleShape(new Vector3d(x, y , 0), new Vector3d(x + 100, y + 100 , 0), PointIncrementName);
+            PointIncrementName++;
             ShapeList.Add(quad);
         }
         /// <summary>
@@ -74,29 +92,27 @@ namespace DrawOpenGL
         internal void NewImage()
         {
             ShapeList.Clear();
-        }
-
-        internal void SelectedCut(int selectedElement)
+        }   
+        internal void Select(int selectedPrimitiv)
         {
-            if (selectedElement == 0)
-            {
-                return;
-            }
-            if (selectedElement != 0)
+            if (selectedPrimitiv != 0)
             {
                 foreach (var item in ShapeList)
                 {
-                    if (item.Name == selectedElement)
+                    if (item.Name == selectedPrimitiv && !item.IsSelected)
                     {
-                        ShapeList.Remove(item);
-                        //marker.Remove(item);
-                        item.IsSelected = false;
-                        break;
+                        item.IsSelected = true;
                     }
                 }
             }
+            if (selectedPrimitiv == 0)
+            {
+                foreach (var item in ShapeList)
+                {
+                    item.IsSelected = false;
+                }
+            }
         }
-
         internal void CopyShape(int selectedShepe)
         {
             if (selectedShepe == 0)
@@ -110,56 +126,58 @@ namespace DrawOpenGL
                     if (item.Name == selectedShepe)
                     {
                         SelectedShape = item;
-                        //marker.Remove(item);
                         item.IsSelected = false;
                         break;
                     }
                 }
-                if (SelectedShape.Name == 1)
+                Vector3d newShapeMatrix = SelectedShape.ShapeMatrix + new Vector3d(100, 100, 0);
+                Vector3d newWidthHeightPoint = SelectedShape.WidthHeightPoint + new Vector3d(100, 100, 0);
+                Shape newShape = new RectangleShape(SelectedShape.ShapeMatrix + new Vector3d(100, 100, 0), new Vector3d(SelectedShape.WidthHeightPoint + new Vector3d(100, 100, 0)), this.RectangleIncrementName);
+                RectangleIncrementName++;
+                ShapeList.Add(newShape);
+            }
+        }
+        internal void DeleteShape(int selectedElement)
+        {
+            if (selectedElement == 0)
+            {
+                return;
+            }
+            if (selectedElement != 0)
+            {
+                foreach (var item in ShapeList)
                 {
-                    int name = 1;
-                Shape newShape = new Point(new Vector3d(100, 100, 0), name);
-                name++;
+                    if (item.Name == selectedElement)
+                    {
+                        SelectedShape = item;
+                        item.IsSelected = false;
+                        break;
+                    }
                 }
-                ShapeList.Add(SelectedShape);
+                ShapeList.Remove(SelectedShape);
             }
         }
 
-        internal void Select(int selectedPrimitiv)
+        internal void CutShape(int selectedElement)
         {
-            ShapeList.Remove(marcer);
-            if (selectedPrimitiv != 0)
+            if (selectedElement == 0)
+            {
+                return;
+            }
+            if (selectedElement != 0)
             {
                 foreach (var item in ShapeList)
                 {
-                    if (item.Name == selectedPrimitiv && !item.IsSelected)
+                    if (item.Name == selectedElement)
                     {
-                        item.IsSelected = true;
                         SelectedShape = item;
-
+                        item.IsSelected = false;
+                        break;                    
                     }
                 }
-                if (selectedShape.Name == 1)
-                {
-                    marcer = new Marcer(SelectedShape.ShapeMatrix - new Vector3d(10, 10, 0), SelectedShape.ShapeMatrix + new Vector3d(10, 10, 0));
-                }
-                else
-                {
-
-                    marcer = new Marcer(SelectedShape.ShapeMatrix, SelectedShape.WidthHeightPoint);
-                }
-
-                ShapeList.Add(marcer);
+                ShapeList.Remove(SelectedShape);
+                ShapeListClipboard.Add(SelectedShape);
             }
-            if (selectedPrimitiv == 0)
-            {
-                foreach (var item in ShapeList)
-                {
-                    item.IsSelected = false;
-                }
-                ShapeList.Remove(marcer);
-            }
-
         }
 
         internal void RemoveMarcer()
@@ -167,12 +185,15 @@ namespace DrawOpenGL
             ShapeList.Remove(marcer);
         }
 
+        int triangleIncrementName = 1;
+        int pointIncrementName = 1;
+        int rectangleIncrementName = 1;
         Shape selectedShape;
         Shape marcer;
-        public Shape SelectedShape
-        {
-            get { return selectedShape; }
-            set {  selectedShape = value; }
-        }
+        Random rnd = new Random();
+        private List<Shape> shapeListClipboard = new List<Shape>();
+
+        
+        
     }
 }

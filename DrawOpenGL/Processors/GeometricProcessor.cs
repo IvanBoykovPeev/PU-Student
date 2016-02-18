@@ -14,14 +14,6 @@ namespace DrawOpenGL
         public GeometricProcessor()
         {
         }
-
-        //Matrix3d transformMatrix;
-
-        //public Matrix3d TransformMatrix
-        //{
-        //    get { return transformMatrix; }
-        //    set { transformMatrix = value; }
-        //}
         internal void Translate(int selectedPrimitiv)
         { 
             Vector3d translateVector = new Vector3d(5, 5, 1);
@@ -57,24 +49,6 @@ namespace DrawOpenGL
                 }
             }
         }
-
-
-
-
-        
-
-
-        //public override void Draw()
-        //{
-        //    base.Draw();
-        //    //foreach (var item in Marcers)
-        //    //{                
-        //    //    DrawShape(item);
-        //    //}
-        //}
-
-        
-
         
     }
 }
